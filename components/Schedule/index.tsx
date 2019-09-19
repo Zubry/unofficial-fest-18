@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
-import { Text } from 'react-native';
+import { SafeAreaView, View, FlatList, StyleSheet, Text, ScrollView } from 'react-native';
+
+import { groupBy, toPairs } from 'ramda'
+
+import EventGroup from '../EventGroup'
 
 export default class Schedule extends Component {
   state = {
-    schedule: {}
+    schedule: []
   }
 
   componentDidMount() {
     fetch('https://api.thefestfl.com/fest18/events')
       .then((response) => response.json())
-      .then((response) => this.setState({ schedule: response }))
+      .then((response) => this.setState({ schedule: toPairs(groupBy(({ start_time }) => start_time, response)) }))
       .catch((error) => {
         console.error(error);
       });
@@ -17,9 +21,15 @@ export default class Schedule extends Component {
 
   render() {
     return (
-      <Text>
-        {JSON.stringify(this.state.schedule, null, 2)}
-      </Text>
+      <SafeAreaView>
+        <ScrollView>
+          {
+            this.state.schedule.map(([timeBlock, schedule]) => (
+              <EventGroup timeBlock={timeBlock} schedule={schedule} key={timeBlock}/>
+            ))
+          }
+        </ScrollView>
+      </SafeAreaView>
     )
   }
 }
