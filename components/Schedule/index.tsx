@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { SafeAreaView, View, FlatList, StyleSheet, Text, ScrollView } from 'react-native';
 
+import { Container, Content, Text } from 'native-base'
 import { groupBy, toPairs } from 'ramda'
 
 import EventGroup from '../EventGroup'
@@ -21,15 +21,15 @@ export default class Schedule extends Component {
 
   render() {
     return (
-      <SafeAreaView>
-        <ScrollView>
+      <Container>
+        <Content>
           {
             this.state.schedule.map(([timeBlock, schedule]) => (
               <EventGroup timeBlock={timeBlock} schedule={schedule} key={timeBlock}/>
             ))
           }
-        </ScrollView>
-      </SafeAreaView>
+        </Content>
+      </Container>
     )
   }
 }
