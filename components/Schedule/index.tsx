@@ -37,11 +37,16 @@ export default function schedule({ day, schedule }) {
               <CardItem>
                 <List style={{ width: "100%" }}>
                   {
-                    shows.map(show => (
-                      <ListItem key={show.event_id} noIndent>
-                        <Text>{show.start_string} { show.performer ? show.performer : show.memo }</Text>
-                      </ListItem>
-                    ))
+                    shows
+                      .filter(show => show.memo !== 'Doors')
+                      .map(show => (
+                        <ListItem key={show.event_id} noIndent>
+                          <View>
+                            <Text>{ show.performer ? show.performer : show.memo }</Text>
+                            <Text note>{show.start_string} - {show.end_string}</Text>
+                          </View>
+                        </ListItem>
+                      ))
                   }
                 </List>
               </CardItem>
