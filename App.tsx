@@ -8,6 +8,8 @@ import Schedule from './components/Schedule'
 
 const schedule = groupBy(({ day }) => day, ScheduleData)
 
+import Schedule from './components/Schedule'
+
 export default function App() {
   return (
     <Schedule schedule={schedule['1']} day={1} />
