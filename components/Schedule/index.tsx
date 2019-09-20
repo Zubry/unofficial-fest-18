@@ -9,14 +9,16 @@ import ScheduleLoaded from './loaded'
 import Header from './Header'
 
 export default function schedule({ day }) {
+  const schedule = useSelector(state => {
+    return state.dataApp.schedule ? state.dataApp.schedule[day] : null
+  })
+
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchSchedule())
-  })
-
-  const schedule = useSelector(state => {
-    return state.dataApp.schedule ? state.dataApp.schedule[day] : null
+    if (schedule === null) {
+      dispatch(fetchSchedule())
+    }
   })
 
   if (schedule === null) {
