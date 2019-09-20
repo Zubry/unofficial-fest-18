@@ -7,7 +7,7 @@ import createSagaMiddleware from 'redux-saga'
 import saga from './sagas'
 import festApp from './stores'
 
-import Schedule from './components/Schedule'
+import Router from './Router'
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -21,7 +21,7 @@ sagaMiddleware.run(saga)
 export default function App() {
   return (
     <Provider store={store}>
-      <Schedule day="1" />
+      <Router />
     </Provider>
   );
 }
