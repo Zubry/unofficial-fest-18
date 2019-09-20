@@ -1,59 +1,39 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Container } from 'native-base'
 
-import { Container, Content, View, Card, CardItem, Header, Body, Left, Text, List, ListItem, Button, Icon, Right } from 'native-base'
+import { fetchSchedule } from '../../stores/data/actions'
 
-import { groupBy, toPairs } from 'ramda'
+import ScheduleLoading from './loading'
+import ScheduleLoaded from './loaded'
+import Header from './Header'
 
-export default function schedule({ day, schedule }) {
-  const byVenue = toPairs(groupBy(({ venue_name }) => venue_name, schedule))
-  return (
-    <Container>
-      <Header>
-        <Left>
-          <Button transparent>
-            <Icon name='arrow-back' />
-          </Button>
-        </Left>
-        <Body>
-          <Text>
-            {
-              day === 1
-                ? 'Friday'
-              : day === 2
-                ? 'Saturday'
-              : 'Sunday'
-            }
-          </Text>
-        </Body>
-        <Right />
-      </Header>
-      <Content>
-        {
-          byVenue.map(([venue, shows]) => (
-            <Card key={venue}>
-              <CardItem header>
-                <Text>{venue}</Text>
-              </CardItem>
-              <CardItem>
-                <List style={{ width: "100%" }}>
-                  {
-                    shows
-                      .filter(show => show.memo !== 'Doors')
-                      .map(show => (
-                        <ListItem key={show.event_id} noIndent>
-                          <View>
-                            <Text>{ show.performer ? show.performer : show.memo }</Text>
-                            <Text note>{show.start_string} - {show.end_string}</Text>
-                          </View>
-                        </ListItem>
-                      ))
-                  }
-                </List>
-              </CardItem>
-            </Card>
-          ))
-        }
-      </Content>
-    </Container>
-  )
+export default function schedule({ day }) {
+  const schedule = useSelector(state => {
+    return state.dataApp.schedule ? state.dataApp.schedule[day] : null
+  })
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (schedule === null) {
+      dispatch(fetchSchedule())
+    }
+  })
+
+  if (schedule === null) {
+    return (
+      <Container>
+        <Header day={day} />
+        <ScheduleLoading day={day}/>
+      </Container>
+    )
+  } else {
+    return (
+      <Container>
+        <Header day={day} />
+        <ScheduleLoaded day={day} schedule={schedule} />
+      </Container>
+    )
+  }
 }
