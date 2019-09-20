@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Container } from 'native-base'
 
 import { fetchSchedule } from '../../stores/data/actions'
 
 import ScheduleLoading from './loading'
 import ScheduleLoaded from './loaded'
+import Header from './Header'
 
 export default function schedule({ day }) {
   const dispatch = useDispatch()
@@ -19,11 +21,17 @@ export default function schedule({ day }) {
 
   if (schedule === null) {
     return (
-      <ScheduleLoading day={day}/>
+      <Container>
+        <Header day={day} />
+        <ScheduleLoading day={day}/>
+      </Container>
     )
   } else {
     return (
-      <ScheduleLoaded day={day} schedule={schedule} />
+      <Container>
+        <Header day={day} />
+        <ScheduleLoaded day={day} schedule={schedule} />
+      </Container>
     )
   }
 }
