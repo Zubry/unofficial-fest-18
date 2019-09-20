@@ -1,14 +1,28 @@
 import React from 'react';
-import { Container, Text } from 'native-base'
-
 import { groupBy } from 'ramda'
 
-import ScheduleData from './schedule.json'
+import { createStore, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
+
+import saga from './sagas'
+import festApp from './stores'
+
 import Schedule from './components/Schedule'
+import ScheduleData from './schedule.json'
+
+const sagaMiddleware = createSagaMiddleware()
+
+const store = createStore(
+  festApp,
+  applyMiddleware(sagaMiddleware)
+)
+
+sagaMiddleware.run(saga)
 
 const schedule = groupBy(({ day }) => day, ScheduleData)
 
-import Schedule from './components/Schedule'
+const unsubscribe = store.subscribe(() => console.log(store.getState()))
+store.dispatch({ type: 'FETCH_SCHEDULE' })
 
 export default function App() {
   return (
