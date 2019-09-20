@@ -1,10 +1,19 @@
-import React from 'react'
-import { SafeAreaView, View, FlatList, StyleSheet, Text } from 'react-native';
+import React, { Component } from 'react';
 
-export default function Event(props) {
+import { Container, Header, Content, List, ListItem, Text } from 'native-base';
+
+interface EventProps {
+  performer?: string,
+  venue_name: string,
+  memo: string,
+  start_string: string,
+  end_string: string,
+}
+
+export default function Event(props: EventProps) {
   return (
-    <View>
-      <Text>{JSON.stringify(props)}</Text>
-    </View>
+    <ListItem>
+      <Text>{props.performer ? props.performer : props.memo}</Text>
+    </ListItem>
   )
 }

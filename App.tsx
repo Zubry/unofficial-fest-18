@@ -1,22 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Container, Text } from 'native-base'
+
+import { groupBy } from 'ramda'
+
+import ScheduleData from './schedule.json'
+import Schedule from './components/Schedule'
+
+const schedule = groupBy(({ day }) => day, ScheduleData)
 
 import Schedule from './components/Schedule'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app! test</Text>
-      <Schedule />
-    </View>
+    <Schedule schedule={schedule['1']} day={1} />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
