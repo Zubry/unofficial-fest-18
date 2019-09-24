@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Container, Content, Text, Card, CardItem, Left, Right, Body, Button, Icon, List, ListItem } from 'native-base'
+import { Container, Content, Text, Card, CardItem, Left, Right, Body, Button, Icon, List, ListItem, Footer, FooterTab } from 'native-base'
 import { Image } from 'react-native'
 import { pipe, map, filter, toPairs } from 'ramda'
 
@@ -78,42 +78,66 @@ export default function Band({ id }) {
               </Right>
             </CardItem>
           </Card>
-          {
-            schedule.map(([day, daily_schedule]) => (
-              <Card key={day}>
-                <CardItem>
-                  <Text>
-                    {
-                      day === '1'
-                        ? 'Friday'
-                      : day === '2'
-                        ? 'Saturday'
-                      : 'Sunday'
-                    }
-                  </Text>
-                </CardItem>
-                <CardItem>
-                  <List style={{ width: "100%" }}>
-                    {
-                      daily_schedule.map(event => (
-                        <ListItem key={event.event_id}>
-                          <Body>
-                            <Text>{event.venue_name}</Text>
-                            <Text note numberOfLines={1}>{event.start_string}-{event.end_string}</Text>
-                          </Body>
-                          <Right>
-                            <Button transparent>
-                              <Icon name="add-circle" />
-                            </Button>
-                          </Right>
-                        </ListItem>
-                      ))
-                    }
-                  </List>
-                </CardItem>
-              </Card>
-            ))
-          }
+          <Card>
+            <CardItem>
+              <Body>
+                <Text>See {band.title.rendered} live</Text>
+              </Body>
+            </CardItem>
+            {
+              schedule.map(([day, daily_schedule]) => (
+                <React.Fragment key={day}>
+                  <CardItem>
+                    <Text>
+                      {
+                        day === '1'
+                          ? 'Friday'
+                        : day === '2'
+                          ? 'Saturday'
+                        : 'Sunday'
+                      }
+                    </Text>
+                  </CardItem>
+                  <CardItem>
+                    <List style={{ width: "100%" }}>
+                      {
+                        daily_schedule.map(event => (
+                          <ListItem key={event.event_id}>
+                            <Body>
+                              <Text>{event.venue_name}</Text>
+                              <Text note numberOfLines={1}>{event.start_string}-{event.end_string}</Text>
+                            </Body>
+                            <Right>
+                              <Button transparent>
+                                <Icon name="add-circle" />
+                              </Button>
+                            </Right>
+                          </ListItem>
+                        ))
+                      }
+                    </List>
+                  </CardItem>
+                </React.Fragment>
+              ))
+            }
+          </Card>
+          <Card>
+            <CardItem>
+              <Body>
+                <Text>Listen to {band.title.rendered}</Text>
+              </Body>
+            </CardItem>
+            <CardItem>
+              <Left>
+                <Text>{band.acf.mp3_song_name}</Text>
+              </Left>
+              <Right>
+                <Button transparent>
+                  <Icon name="play" />
+                </Button>
+              </Right>
+            </CardItem>
+          </Card>
         </Content>
       </Container>
     )
