@@ -5,6 +5,7 @@ import { Image } from 'react-native'
 import { pipe, map, filter, toPairs } from 'ramda'
 
 import { fetchBand, fetchSchedule } from '../../stores/data/actions'
+import { setHeader } from '../../stores/header/actions'
 
 import BandLoading from './Loading'
 import Header from './Header'
@@ -40,6 +41,10 @@ export default function Band({ id }) {
     if (schedule == null) {
       dispatch(fetchSchedule())
     }
+
+    if (band != null) {
+      dispatch(setHeader(band.title.rendered))
+    }
   })
 
   if (band == null) {
@@ -51,7 +56,6 @@ export default function Band({ id }) {
   } else {
     return (
       <Container>
-        <Header name={band.title.rendered} />
         <Content>
           <Card>
             <CardItem cardBody>

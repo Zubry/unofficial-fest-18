@@ -24,14 +24,12 @@ export default function schedule({ day }) {
   if (schedule === null) {
     return (
       <Container>
-        <Header day={day} />
         <ScheduleLoading day={day}/>
       </Container>
     )
   } else {
     return (
       <Container>
-        <Header day={day} />
         <ScheduleLoaded day={day} schedule={schedule} />
       </Container>
     )
