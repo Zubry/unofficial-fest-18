@@ -113,9 +113,9 @@ export default {
   },
 
   // Card
-  cardDefaultBg: '#fff',
-  cardBorderColor: '#ccc',
-  cardBorderRadius: 2,
+  cardDefaultBg: '#1b1b1b',
+  cardBorderColor: '#1b1b1b',
+  cardBorderRadius: 0,
   cardItemPadding: platform === PLATFORM.IOS ? 10 : 12,
 
   // CheckBox
@@ -133,8 +133,8 @@ export default {
   checkboxTextShadowRadius: 0,
 
   // Color
-  brandPrimary: platform === PLATFORM.IOS ? '#007aff' : '#3F51B5',
-  brandInfo: '#62B1F6',
+  brandPrimary: platform === PLATFORM.IOS ? '#1b1b1b' : '#1b1b1b',
+  brandInfo: '#ff4081',
   brandSuccess: '#5cb85c',
   brandDanger: '#d9534f',
   brandWarning: '#f0ad4e',
@@ -142,7 +142,7 @@ export default {
   brandLight: '#f4f4f4',
 
   // Container
-  containerBgColor: '#fff',
+  containerBgColor: '#424242',
 
   // Date Picker
   datePickerFlex: 1,
@@ -199,7 +199,7 @@ export default {
 
   // Header
   toolbarBtnColor: platform === PLATFORM.IOS ? '#007aff' : '#fff',
-  toolbarDefaultBg: platform === PLATFORM.IOS ? '#F8F8F8' : '#3F51B5',
+  toolbarDefaultBg: platform === PLATFORM.IOS ? '#F8F8F8' : '#1b1b1b',
   toolbarHeight: platform === PLATFORM.IOS ? 64 : 56,
   toolbarSearchIconSize: platform === PLATFORM.IOS ? 20 : 23,
   toolbarInputColor: platform === PLATFORM.IOS ? '#CECDD2' : '#fff',
@@ -275,7 +275,7 @@ export default {
   segmentBorderColorMain: platform === PLATFORM.IOS ? '#a7a6ab' : '#3F51B5',
 
   // Spinner
-  defaultSpinnerColor: '#45D56E',
+  defaultSpinnerColor: '#ff4081',
   inverseSpinnerColor: '#1A191B',
 
   // Tab
@@ -291,8 +291,8 @@ export default {
   tabFontSize: 15,
 
   // Text
-  textColor: '#000',
-  inverseTextColor: '#fff',
+  textColor: '#fff',
+  inverseTextColor: '#000',
   noteFontSize: 14,
   get defaultTextColor() {
     return this.textColor;

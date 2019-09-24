@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Container, Content, Text, Card, CardItem, Left, Right, Body, Button, Icon, List, ListItem, Footer, FooterTab } from 'native-base'
+import { Container, Content, Text, Card, CardItem, Left, Right, Body, Button, Icon, List, ListItem, Footer, FooterTab, H2, H3 } from 'native-base'
 import { Image } from 'react-native'
 import { pipe, map, filter, toPairs } from 'ramda'
 
@@ -67,17 +67,17 @@ export default function Band({ id }) {
             <CardItem>
               <Left style={{flexDirection: "row", justifyContent: "center"}}>
                 <Button transparent>
-                  <Icon active name="logo-twitter" />
+                  <Icon active name="logo-twitter" style={{ color: '#ff4081' }} />
                 </Button>
               </Left>
               <Body style={{flexDirection: "row", justifyContent: "center"}}>
                 <Button transparent>
-                  <Icon active name="logo-facebook" />
+                  <Icon active name="logo-facebook" style={{ color: '#ff4081' }} />
                 </Button>
               </Body>
               <Right style={{flexDirection: "row", justifyContent: "center"}}>
                 <Button transparent>
-                  <Icon active name="link" />
+                  <Icon active name="link" style={{ color: '#ff4081' }} />
                 </Button>
               </Right>
             </CardItem>
@@ -85,14 +85,14 @@ export default function Band({ id }) {
           <Card>
             <CardItem>
               <Body>
-                <Text>See {band.title.rendered} live</Text>
+                <H2>See {band.title.rendered} live</H2>
               </Body>
             </CardItem>
             {
               schedule.map(([day, daily_schedule]) => (
                 <React.Fragment key={day}>
                   <CardItem>
-                    <Text>
+                    <H3>
                       {
                         day === '1'
                           ? 'Friday'
@@ -100,7 +100,7 @@ export default function Band({ id }) {
                           ? 'Saturday'
                         : 'Sunday'
                       }
-                    </Text>
+                    </H3>
                   </CardItem>
                   <CardItem>
                     <List style={{ width: "100%" }}>
@@ -113,7 +113,7 @@ export default function Band({ id }) {
                             </Body>
                             <Right>
                               <Button transparent>
-                                <Icon name="add-circle" />
+                                <Icon name="add-circle" style={{ color: '#ff4081' }} />
                               </Button>
                             </Right>
                           </ListItem>
@@ -128,7 +128,7 @@ export default function Band({ id }) {
           <Card>
             <CardItem>
               <Body>
-                <Text>Listen to {band.title.rendered}</Text>
+                <H2>Listen to {band.title.rendered}</H2>
               </Body>
             </CardItem>
             <CardItem>
@@ -137,7 +137,7 @@ export default function Band({ id }) {
               </Left>
               <Right>
                 <Button transparent>
-                  <Icon name="play" />
+                  <Icon name="play" style={{ color: '#ff4081' }} />
                 </Button>
               </Right>
             </CardItem>
