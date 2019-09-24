@@ -1,8 +1,10 @@
 import { SET_VIEW } from './actions'
 
 const initialState = {
-  route: '',
-  params: {}
+  route: 'band',
+  params: {
+    id: 19619
+  }
 }
 
 export default function dataApp(state = initialState, action) {
