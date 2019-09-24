@@ -5,19 +5,18 @@ import { Text } from 'native-base'
 import { setView } from './stores/view/actions'
 
 import Schedule from './components/Schedule'
+import Band from './components/Band'
 
 export default function Router() {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(setView('schedule', { day: '1' }))
-  })
-
   const router = useSelector(state => {
     return state.viewApp
   })
 
   switch (router.route) {
+    case 'band':
+      return (
+        <Band id={router.params.id} />
+      )
     case 'schedule':
       return (
         <Schedule day={router.params.day} />
