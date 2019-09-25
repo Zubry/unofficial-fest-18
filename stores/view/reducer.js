@@ -1,9 +1,9 @@
 import { SET_VIEW } from './actions'
 
 const initialState = {
-  route: 'schedule',
+  route: 'band',
   params: {
-    day: 3
+    id: 19619
   }
 }
 

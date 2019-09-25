@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Container } from 'native-base'
 
 import { fetchSchedule } from '../../stores/data/actions'
+import { setHeader } from '../../stores/header/actions'
 
 import ScheduleLoading from './loading'
 import ScheduleLoaded from './loaded'
@@ -18,6 +19,10 @@ export default function schedule({ day }) {
   useEffect(() => {
     if (schedule === null) {
       dispatch(fetchSchedule())
+    }
+
+    if (schedule != null) {
+      dispatch(setHeader(day === 1 ? 'Friday' : day === 2 ? 'Saturday' : 'Sunday'))
     }
   })
 

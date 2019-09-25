@@ -9,6 +9,7 @@ import { setHeader } from '../../stores/header/actions'
 
 import BandLoading from './Loading'
 import Header from './Header'
+import Event from '../Event'
 
 const BandDescription = ({ text }) => (
   <Text>
@@ -106,17 +107,12 @@ export default function Band({ id }) {
                     <List style={{ width: "100%" }}>
                       {
                         daily_schedule.map(event => (
-                          <ListItem key={event.event_id}>
-                            <Body>
-                              <Text>{event.venue_name}</Text>
-                              <Text note numberOfLines={1}>{event.start_string}-{event.end_string}</Text>
-                            </Body>
-                            <Right>
-                              <Button transparent>
-                                <Icon name="add-circle" style={{ color: '#ff4081' }} />
-                              </Button>
-                            </Right>
-                          </ListItem>
+                          <Event
+                            key={event.event_id}
+                            label={event.venue_name}
+                            start_string={event.start_string}
+                            end_string={event.end_string}
+                          />
                         ))
                       }
                     </List>
